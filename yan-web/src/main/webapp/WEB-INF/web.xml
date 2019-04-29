@@ -147,10 +147,11 @@
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
 
+    <!--使用了springsession  web.xml文件中的配置就無效了-->
     <!-- 配置 session 失效时间 -->
-    <session-config>
-        <session-timeout>15</session-timeout>
-    </session-config>
+    <!--<session-config>-->
+        <!--<session-timeout>15</session-timeout>-->
+    <!--</session-config>-->
 
     <!-- 配置欢迎页 -->
     <welcome-file-list>

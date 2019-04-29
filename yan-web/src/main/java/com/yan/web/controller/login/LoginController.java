@@ -4,16 +4,20 @@ import com.yan.api.persistence.DelegateService;
 import com.yan.core.controller.BaseController;
 import com.yan.dao.model.login.LoginModel;
 import com.yan.dao.model.login.LoginUser;
+import jdk.nashorn.internal.runtime.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +35,15 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/common/login")
+@Slf4j
 public class LoginController extends BaseController {
 
     @Autowired
     private DelegateService delegateService;
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
 
     /**
      * 登录方法<br>
@@ -51,7 +60,8 @@ public class LoginController extends BaseController {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("userCode", username);
         paramMap.put("userPassword", password);
-
+        redisTemplate.opsForValue().set("chen","cheng");
+log.info("chen-> set reids name chen value={}",redisTemplate.opsForValue().get("chen"));
         LoginUser loginUser = delegateService.selectOne("com.yan.dao.mapper.login.LoginCustomMapper.getLoginUser", paramMap);
 
         if (this.isNull(loginUser))

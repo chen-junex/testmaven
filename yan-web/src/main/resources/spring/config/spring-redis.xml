@@ -60,6 +60,7 @@
     <!-- 将 session 放入 redis 中 -->
     <bean id="redisHttpSessionConfiguration"
           class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <!--&lt;!&ndash; session过期时间,单位是秒 &ndash;&gt;web。xml文件設置無效-->
         <property name="maxInactiveIntervalInSeconds" value="${redis.maxInactiveIntervalInSeconds}"/>
     </bean>
 

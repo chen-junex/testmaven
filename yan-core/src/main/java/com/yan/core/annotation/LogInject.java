@@ -36,7 +36,7 @@ import java.lang.annotation.*;
  * 版权：<br>
  * Copyright 2017 <a href="https://github.com/micyo202" target="_blank">https://github.com/micyo202</a>. All rights reserved.
  */
-@Documented
+    @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface LogInject {
